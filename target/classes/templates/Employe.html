@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Employés</title>
+</head>
+<body>
+<h1>Liste des Employés</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Superviseur</th>
+        <th>Groupes</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employe : ${employes}">
+        <!-- Affiche l'ID de l'employé -->
+        <td th:text="${employe.numEmploye}"></td>
+
+        <!-- Affiche le nom de l'employé -->
+        <td th:text="${employe.nomEmploye}"></td>
+
+        <!-- Affiche le nom du superviseur (s'il y en a un) -->
+        <td th:text="${employe.employeSup != null ? employe.employeSup.nomEmploye : 'Aucun'}"></td>
+
+        <!-- Affiche les groupes auxquels l'employé appartient -->
+        <td>
+            <ul>
+                <li th:each="groupe : ${employe.groupes}" th:text="${groupe.nomGroupe}"></li>
+            </ul>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
